@@ -1,3 +1,4 @@
+// models/getTaskmodel.js
 const db = require('../config/db');
 
 const getTask = () => {
@@ -20,10 +21,10 @@ const updatePatch = (id, created) => {
     });
 };
 
-const addTask = (task) => {
+const addTask = (task, banner) => {
     return new Promise((resolve, reject) => {
-        const sql = 'INSERT INTO mydata (task, created) VALUES (?, ?)';
-        db.run(sql, [task, 0], function (err) {
+        const sql = 'INSERT INTO mydata (task, created, banner) VALUES (?, ?, ?)'; 
+        db.run(sql, [task, 0, banner], function (err) {
             if (err) return reject(err);
             resolve({ msg: 'Yangi todo muvaffaqiyatli qo‘shildi', id: this.lastID });
         });
